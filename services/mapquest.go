@@ -17,7 +17,6 @@ import (
 // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
 func GetLatLong(city string) (string, error) {
 	// This will call the endpoint and return a lat/long response
-	apiKey := "AIzaSyCb0s-R-lKfq6SAn3eegeSgYXuNN2PzD-k"
 	baseURL := "https://maps.googleapis.com/maps/api/geocode/json"
 	location := strings.Replace(city, ",", ",+", 1)
 
