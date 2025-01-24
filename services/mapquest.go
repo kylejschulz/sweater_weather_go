@@ -16,6 +16,15 @@ import (
 //func getLatLong(city string) LatLong {
 // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
 func GetLatLong(city string) (string, error) {
+	secrets, err := GetSecrets()
+
+	if err != nil {
+		return "", fmt.Errorf("Error with GetSecrets(): %v", err)
+	}
+	fmt.Printf("Secrets: %+v\n", secrets)
+	// Use the APIKey from the secrets
+	fmt.Println("API Key:", secrets.APIKey)
+
 	// This will call the endpoint and return a lat/long response
 	baseURL := "https://maps.googleapis.com/maps/api/geocode/json"
 	location := strings.Replace(city, ",", ",+", 1)
@@ -29,7 +38,7 @@ func GetLatLong(city string) (string, error) {
 	// Add the location as a query parameter
 	query := parsedURL.Query()
 	query.Set("address", location)
-	query.Set("key", apiKey)
+	query.Set("key", secrets.APIKey)
 	parsedURL.RawQuery = query.Encode()
 
 	// Create the GET request

@@ -1,2 +1,2 @@
 # Ignore a specific file
-secret-config.yaml
+secrets.yaml
