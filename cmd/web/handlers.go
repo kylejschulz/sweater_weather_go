@@ -25,13 +25,14 @@ func (app *application) forecast(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Call GetLatLong from the services package
-	res, err := services.GetLatLong(location)
+	latLong, err := services.GetLatLong(location)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error fetching location data: %v", err), http.StatusInternalServerError)
 		return
 	}
 
-	fmt.Fprintf(w, "Latitude and longitude for %s is %s", location, res)
+	//fmt.Fprintf(w, "Latitude and longitude for %s is %s", location, res)
+	fmt.Fprintf(w, "Here's the lat long: %v", latLong)
 }
 
 func (app *application) signup(w http.ResponseWriter, r *http.Request) {
